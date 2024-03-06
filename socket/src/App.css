@@ -1,0 +1,110 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.panel-container {body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+#root {
+  width: 500px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+  width: 100%;
+  height: 200px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4CAF50;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+  max-width: 600px;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.message-input button {
+  background-color: darkcyan; /* Butonun arka plan rengini açık mavi yap */
+}
+
+.code-container textarea {
+  width: 70%; /* Metin alanının genişliğini ayarla */
+  height: 200px; /* Metin alanının yüksekliğini ayarla */
+  resize: none; /* Metin alanının boyutunu değiştirilemez yap */
+  padding: 10px; /* Metin alanının iç kenar boşluğunu ayarla */
+  font-size: 16px; /* Metin alanındaki metin boyutunu ayarla */
+  text-align: left; /* Metni sola hizala */
+}
+
+/* CSS */
+.panel-container {
+  display: flex; /* Panelleri yan yana hizalama */
+  gap: 20px; /* Paneller arasındaki boşluğu ayarla */
+}
+
+
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.panel-container {
+  display: flex;
+  flex-direction: row;
+}
+.collaborators-box {
+  position: fixed;
+  top: 520px;
+  right: 35px;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.collaborators-box h2 {
+  margin-top: 0;
+}

@@ -1,0 +1,48 @@
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200vh; /* Ekranın tamamını kapla */
+  overflow: hidden; /* Kaydırma çubuğunu kaldır */
+}
+
+/* Panel-container'ı eşit büyüklükte yan yana hizala */
+.panel-container {
+  display: flex;
+  width: 100%; /* Container'ın tamamını kapla */
+}
+
+/* Panel'ın stilini ayarla */
+.code-container,
+.chat-panel {
+  flex: 1; /* Eşit genişlik */
+  height: 100%; /* Container'ın tamamını kapla */
+  padding: 20px; /* Kenar boşluğu */
+  box-sizing: border-box; /* Padding hesabını dahil et */
+}
+
+/* Kaydırma çubuğunu kaldır */
+.message-input textarea {
+  overflow: auto;
+}
+
+/* index.css */
+
+/* Navbar'ın arka planını gri yap */
+.navbar {
+  background-color: #302f2f;
+  height: 60px; /* Navbar'ın yüksekliğini artırarak kalınlığını ayarla */
+  display: flex; /* Flexbox kullanarak içeriği merkeze al */
+  align-items: center; /* Dikeyde merkezle */
+}
+
+/* Navbar içindeki yazıları başlığa uygun ve büyük şekilde stilize et */
+.navbar-brand {
+  font-family: Arial, sans-serif; /* Başlık için uygun font */
+  font-size: 24px; /* Başlık için uygun büyüklük */
+  font-weight: bold; /* Kalın font */
+  color: #fff; /* Yazı rengi */
+  margin: 0 auto; /* Yazıyı yatayda ortala */
+}
+
