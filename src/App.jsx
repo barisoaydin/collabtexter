@@ -28,7 +28,7 @@ function CodeChecker() {
       }
     }
   }, [showNamePrompt]);
-
+  
   const checkCode = () => {
     try {
       esprima.parseScript(code);
