@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
 
 function App() {
-  const [username, setUsername] = useState('');
-  const [message, setMessage] = useState('');
+  const [username, setUsername] = useState("");
+  const [message, setMessage] = useState("");
   const [receivedMessages, setReceivedMessages] = useState([]);
 
-  const ws = new WebSocket('ws://localhost:5173');
+  const ws = new WebSocket("ws://localhost:5173");
 
   useEffect(() => {
     ws.onmessage = (event) => {
@@ -21,7 +21,7 @@ function App() {
       message: message,
     };
     ws.send(JSON.stringify(messageObj));
-    setMessage('');
+    setMessage("");
   };
 
   return (
