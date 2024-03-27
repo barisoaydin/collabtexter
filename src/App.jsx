@@ -10,7 +10,6 @@ import "prismjs/themes/prism.css";
 
 function CodeChecker() {
   const [code, setCode] = useState("");
-  const [isValid, setIsValid] = useState(false);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [userName, setUserName] = useState("");
@@ -59,33 +58,27 @@ function CodeChecker() {
   return (
     <div>
       <nav className="navbar">
-        <div className="navbar-brand">Collabrator</div>
+        <div className="navbar-brand">collabtexter</div>
+        <div className="navbar-site">advanced collaborators text</div>
       </nav>
       <div className="container">
-        <form onSubmit={handleNameSubmit} className="name-form"></form>
 
-        <div className="panel-container">
-          <div className="code-container">
-            <Editor
-              value={code}
-              onValueChange={(code) => setCode(code)}
-              highlight={(code) => highlight(code, languages.js)}
-              padding={10}
-              style={{
-                fontFamily: '"Fira code", "Fira Mono", monospace',
-                fontSize: 12,
-              }}
-            />
-            <button onClick={checkCode}>Check</button>
-            {isValid ? (
-              <p className="validation-message">
-                The code is valid JavaScript.
-              </p>
-            ) : (
-              <p className="validation-message"></p>
-            )}
+        {/* <div className="panel-container"> */}
+        <div className="code-container">
+
+          <Editor
+                className="code-editor"
+                 value={code}
+                 placeholder="Type your code..."
+                  onValueChange={(code) => setCode(code)}
+                  highlight={(code) => highlight(code, languages.js)}
+                  style={{
+                   fontFamily: '"Fira code", "Fira Mono", monospace',
+                  fontSize: 16,
+                 }}
+                  />
           </div>
-          <div className="chat-panel">
+        <div className="chat-panel">
             {messages.map((message, index) => (
               <div
                 key={index}
@@ -105,7 +98,7 @@ function CodeChecker() {
               <button onClick={sendMessage}>Send</button>
             </div>
           </div>
-        </div>
+        {/* </div> */}
 
         <div className="collaborators-box">
           <h2>USERS</h2>
@@ -121,6 +114,9 @@ function CodeChecker() {
           </table>
         </div>
       </div>
+      <footer className="footer">
+        <p>© 2024 collabtexters created by boa</p>
+      </footer>
     </div>
   );
 }
