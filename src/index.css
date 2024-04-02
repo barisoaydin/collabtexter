@@ -3,6 +3,8 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f2f2f2;
+
+  overflow-x: hidden;
 }
 
 .navbar {
@@ -21,7 +23,7 @@ body {
   color: #fff;
   padding: 20px;
   font-family: "Courier New", Courier, monospace;
-  text-align: left;
+  text-align: center;
   font-size: 15px;
   padding-left: 0px;
   position: absolute;
@@ -43,71 +45,80 @@ body {
 
 .container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* Change this line */
+  justify-content: flex-start; /* Add this line */
+
+  /* align-items: center; */
   height: 100vh;
   padding: 0px;
-}
-
-.panel-container {
-  display: flex;
-  gap: 10px;
-  border: none;
-  border-radius: 5px;
+  margin-right: 10px;
 }
 
 .code-container {
-  flex: 1;
+  flex: 3;
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
   overflow: auto;
   width: 70%;
+  margin-right: 10px;
 }
 
 .chat-panel {
+  margin-top: 17px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   flex: 1;
   background-color: #fff;
-  border-radius: 5px;
+  /* border-radius: 5px; */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  height: 354px;
+}
+.collaborators-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: #fff;
+  /* border-radius: 5px; */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
 }
 
 .message-input {
-  margin-top: 20px;
+  margin-top: auto;
+
+  /* display: flex; */
 }
 
 .message-input textarea {
-  width: calc(100% - 80px);
-  height: 60px;
+  width: 350px;
+  height: 10px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  resize: none;
+  resize: unset;
+  overflow-y: hidden;
 }
 
 .message-input button {
-  width: 60px;
-  height: 60px;
+  width: 30px;
+  height: 40px;
   background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.1s ease;
+  /* margin-top: 50px; */
 }
 
 .message-input button:hover {
   background-color: #0056b3;
-}
-
-.collaborators-box {
-  flex: 1;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
 }
 
 table {
@@ -124,10 +135,10 @@ h2 {
 }
 
 .user-message {
-  background-color: #007bff;
   color: #fff;
   padding: 10px;
   border-radius: 5px;
+
   margin-bottom: 10px;
   width: fit-content;
 }

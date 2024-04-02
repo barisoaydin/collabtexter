@@ -23,11 +23,11 @@ function CodeChecker() {
         setUserName(name);
         setCollaborators([name]);
         setShowNamePrompt(false);
-        alert(Welcome, ${name}!);
+        alert(`Welcome, ${name}!`);
       }
     }
   }, [showNamePrompt]);
-  
+
   const checkCode = () => {
     try {
       esprima.parseScript(code);
@@ -47,7 +47,7 @@ function CodeChecker() {
   const handleNameSubmit = (e) => {
     e.preventDefault();
     if (userName.trim() !== "") {
-      alert(Welcome, ${userName}!);
+      alert(`Welcome, ${userName}!`);
       setCollaborators([...collaborators, userName]);
       setUserName("");
     } else {
@@ -62,60 +62,61 @@ function CodeChecker() {
         <div className="navbar-site">advanced collaborators text</div>
       </nav>
       <div className="container">
-
-        {/* <div className="panel-container"> */}
         <div className="code-container">
-
           <Editor
-                className="code-editor"
-                 value={code}
-                 placeholder="Type your code..."
-                  onValueChange={(code) => setCode(code)}
-                  highlight={(code) => highlight(code, languages.js)}
-                  style={{
-                   fontFamily: '"Fira code", "Fira Mono", monospace',
-                  fontSize: 16,
-                 }}
-                  />
+            className="code-editor"
+            value={code}
+            placeholder="Type your code..."
+            onValueChange={(code) => setCode(code)}
+            highlight={(code) => highlight(code, languages.js)}
+            style={{
+              fontFamily: '"Fira code", "Fira Mono", monospace',
+              fontSize: 16,
+            }}
+          />
+        </div>
+        <div className="panel-container">
+          <div className="collaborators-box">
+            <h2>Collaborators</h2>
+            <table>
+              <thead></thead>
+              <tbody>
+                {collaborators.map((collaborator, index) => (
+                  <tr key={index}>
+                    <td>{collaborator}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        <div className="chat-panel">
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={
-                  message.sender === "user" ? "user-message" : "other-message"
-                }
-              >
-                {message.text}
-              </div>
-            ))}
+          <div className="chat-panel">
+            <h3 className="center-text">Messages</h3>
+            <div className="chat-box bg-blue">
+              {messages.map((message, index) => (
+                <div
+                  key={index}
+                  className={
+                    message.sender === "user" ? "user-message" : "other-message"
+                  }
+                >
+                  {userName}: {message.text}
+                </div>
+              ))}
+            </div>
+
             <div className="message-input">
               <textarea
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
                 placeholder="Type your message..."
               />
-              <button onClick={sendMessage}>Send</button>
             </div>
+            <button className="bg-blue" onClick={sendMessage}>Send</button>
           </div>
-        {/* </div> */}
-
-        <div className="collaborators-box">
-          <h2>USERS</h2>
-          <table>
-            <thead></thead>
-            <tbody>
-              {collaborators.map((collaborator, index) => (
-                <tr key={index}>
-                  <td>{collaborator}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
         </div>
       </div>
       <footer className="footer">
-        <p>© 2024 collabtexters created by boa</p>
+        <p>© 2024 collabtexter created by boa</p>
       </footer>
     </div>
   );
