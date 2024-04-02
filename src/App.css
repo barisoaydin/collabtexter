@@ -6,10 +6,10 @@
   border: none;
   width: auto;
 }
-  
+
 .panel-container {
   body {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Courier New", Courier, monospace;
     margin: 0;
     padding: 0;
     display: flex;
@@ -57,11 +57,11 @@
     text-align: center;
     margin-bottom: 20px;
   }
-  
+
   max-width: 900px;
   width: 100%;
   border: 1px solid #ccc;
-  border: radius 0;;
+  border: radius 0;
 }
 
 .message-input button {
@@ -71,16 +71,15 @@
 .code-container textarea {
   position: absolute;
   left: 0;
-  width: 70%; 
-  height: 200px; 
-  padding: 10px; 
-  font-size: 16px; 
+  width: 70%;
+  height: 200px;
+  padding: 10px;
+  font-size: 16px;
   text-align: left;
 }
 
-
 .panel-container {
-  display: flex; 
+  display: flex;
   gap: 20px;
 }
 

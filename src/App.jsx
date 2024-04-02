@@ -23,7 +23,7 @@ function CodeChecker() {
         setUserName(name);
         setCollaborators([name]);
         setShowNamePrompt(false);
-        alert(`Welcome, ${name}!`);
+        alert(Welcome, ${name}!);
       }
     }
   }, [showNamePrompt]);
@@ -47,7 +47,7 @@ function CodeChecker() {
   const handleNameSubmit = (e) => {
     e.preventDefault();
     if (userName.trim() !== "") {
-      alert(`Welcome, ${userName}!`);
+      alert(Welcome, ${userName}!);
       setCollaborators([...collaborators, userName]);
       setUserName("");
     } else {
