@@ -7,16 +7,32 @@ import { highlight, languages } from "prismjs/components/prism-core";
 import "prismjs/components/prism-clike";
 import "prismjs/components/prism-javascript";
 import "prismjs/themes/prism.css";
+import { io } from 'socket.io-client';
 
 function CodeChecker() {
   const [code, setCode] = useState("");
+  const [isValid, setIsValid] = useState(true);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [userName, setUserName] = useState("");
   const [collaborators, setCollaborators] = useState([]);
   const [showNamePrompt, setShowNamePrompt] = useState(true);
+  const [socket, setSocket] = useState(null);
 
   useEffect(() => {
+    const socketIo = io.connect("http://localhost:5173");
+
+    socketIo.on("message", (message) => {
+      setMessages((messages) => [...messages, { sender: message.sender, text: message.text }]);
+      setNewMessage("");
+    });
+
+    socketIo.on("connection", () => {
+      console.log("A new user connected");
+    });
+
+    setSocket(socketIo);
+
     if (showNamePrompt) {
       const name = prompt("Please enter your name:");
       if (name !== null && name !== "") {
@@ -26,6 +42,12 @@ function CodeChecker() {
         alert(`Welcome, ${name}!`);
       }
     }
+
+    return () => {
+      if (socketIo) {
+        socketIo.disconnect();
+      }
+    };
   }, [showNamePrompt]);
 
   const checkCode = () => {
@@ -37,9 +59,13 @@ function CodeChecker() {
     }
   };
 
-  const sendMessage = () => {
-    if (newMessage.trim() !== "") {
-      setMessages([...messages, { text: newMessage, sender: "user" }]);
+  const sendMessage = (event) => {
+    event.preventDefault();
+
+    if (newMessage && socket) {
+      const message = { sender: userName, text: newMessage };
+      socket.emit("message", message);
+      setMessages((messages) => [...messages, message]);
       setNewMessage("");
     }
   };
@@ -91,27 +117,29 @@ function CodeChecker() {
           </div>
           <div className="chat-panel">
             <h3 className="center-text">Messages</h3>
-            <div className="chat-box bg-blue">
+            <div className="chat-box bg-blue" id="output">
               {messages.map((message, index) => (
                 <div
                   key={index}
                   className={
-                    message.sender === "user" ? "user-message" : "other-message"
+                    message.sender === userName ? "user-message" : "other-message"
                   }
                 >
-                  {userName}: {message.text}
+                  <strong>{message.sender}: </strong>{message.text}
                 </div>
               ))}
             </div>
-
-            <div className="message-input">
-              <textarea
-                value={newMessage}
-                onChange={(e) => setNewMessage(e.target.value)}
-                placeholder="Type your message..."
-              />
-            </div>
-            <button className="bg-blue" onClick={sendMessage}>Send</button>
+            <form onSubmit={sendMessage}>
+              <div className="message-input">
+                <textarea
+                  id="newMessage"
+                  value={newMessage}
+                  onChange={(e) => setNewMessage(e.target.value)}
+                  placeholder="Type your message..."
+                />
+              </div>
+              <button className="bg-blue" id="submitBtn" type="submit">Send</button>
+            </form>
           </div>
         </div>
       </div>
