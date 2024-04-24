@@ -3,11 +3,15 @@ import "./index.css";
 import "./App.css";
 import esprima from "esprima";
 import Editor from "react-simple-code-editor";
+import { socket } from './socket';
+import { ConnectionState } from './components/ConnectionState';
+import { ConnectionManager } from './components/ConnectionManager';
+import { Events } from "./components/Events";
+import { MyForm } from './components/MyForm';
 import { highlight, languages } from "prismjs/components/prism-core";
 import "prismjs/components/prism-clike";
 import "prismjs/components/prism-javascript";
 import "prismjs/themes/prism.css";
-import { io } from 'socket.io-client';
 
 function CodeChecker() {
   const [code, setCode] = useState("");
@@ -17,38 +21,32 @@ function CodeChecker() {
   const [userName, setUserName] = useState("");
   const [collaborators, setCollaborators] = useState([]);
   const [showNamePrompt, setShowNamePrompt] = useState(true);
-  const [socket, setSocket] = useState(null);
+  const [isConnected, setIsConnected] = useState(socket.connected);
+  const [fooEvents, setFooEvents] = useState([]);
 
   useEffect(() => {
-    const socketIo = io.connect("http://localhost:5173");
-
-    socketIo.on("message", (message) => {
-      setMessages((messages) => [...messages, { sender: message.sender, text: message.text }]);
-      setNewMessage("");
-    });
-
-    socketIo.on("connection", () => {
-      console.log("A new user connected");
-    });
-
-    setSocket(socketIo);
-
-    if (showNamePrompt) {
-      const name = prompt("Please enter your name:");
-      if (name !== null && name !== "") {
-        setUserName(name);
-        setCollaborators([name]);
-        setShowNamePrompt(false);
-        alert(`Welcome, ${name}!`);
-      }
+    function onConnect() {
+      setIsConnected(true);
     }
 
+    function onDisconnect() {
+      setIsConnected(false);
+    }
+
+    function onFooEvent(value) {
+      setFooEvents(previous => [...previous, value]);
+    }
+
+    socket.on('connect', onConnect);
+    socket.on('disconnect', onDisconnect);
+    socket.on('foo', onFooEvent);
+
     return () => {
-      if (socketIo) {
-        socketIo.disconnect();
-      }
+      socket.off('connect', onConnect);
+      socket.off('disconnect', onDisconnect);
+      socket.off('foo', onFooEvent);
     };
-  }, [showNamePrompt]);
+  }, []);
 
   const checkCode = () => {
     try {
@@ -83,7 +81,11 @@ function CodeChecker() {
 
   return (
     <div>
-      <nav className="navbar">
+      <ConnectionState isConnected={ isConnected } />
+      <Events events={ fooEvents } />
+      <ConnectionManager />
+      <MyForm />
+      {/* <nav className="navbar">
         <div className="navbar-brand">collabtexter</div>
         <div className="navbar-site">advanced collaborators text</div>
       </nav>
@@ -145,7 +147,7 @@ function CodeChecker() {
       </div>
       <footer className="footer">
         <p>© 2024 collabtexter created by boa</p>
-      </footer>
+      </footer> */}
     </div>
   );
 }
