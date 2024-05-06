@@ -7,7 +7,7 @@ import { highlight, languages } from "prismjs/components/prism-core";
 import "prismjs/components/prism-clike";
 import "prismjs/components/prism-javascript";
 import "prismjs/themes/prism.css";
-import { io } from 'socket.io-client';
+import { io } from "socket.io-client";
 
 function CodeChecker() {
   const [code, setCode] = useState("");
@@ -23,7 +23,10 @@ function CodeChecker() {
     const socketIo = io.connect("http://localhost:5173");
 
     socketIo.on("message", (message) => {
-      setMessages((messages) => [...messages, { sender: message.sender, text: message.text }]);
+      setMessages((messages) => [
+        ...messages,
+        { sender: message.sender, text: message.text },
+      ]);
       setNewMessage("");
     });
 
@@ -122,10 +125,13 @@ function CodeChecker() {
                 <div
                   key={index}
                   className={
-                    message.sender === userName ? "user-message" : "other-message"
+                    message.sender === userName
+                      ? "user-message"
+                      : "other-message"
                   }
                 >
-                  <strong>{message.sender}: </strong>{message.text}
+                  <strong>{message.sender}: </strong>
+                  {message.text}
                 </div>
               ))}
             </div>
@@ -138,7 +144,9 @@ function CodeChecker() {
                   placeholder="Type your message..."
                 />
               </div>
-              <button className="bg-blue" id="submitBtn" type="submit">Send</button>
+              <button className="bg-blue" id="submitBtn" type="submit">
+                Send
+              </button>
             </form>
           </div>
         </div>
