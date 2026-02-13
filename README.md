@@ -1,37 +1,94 @@
-CollabTexter – Real-Time Technical Interview Platform
+# CollabTexter – Real-Time Technical Interview Platform
 
-1. Overview
-CollabTexter is a browser-based real-time technical interview platform that enables developers and employers to conduct live coding assessments within a structured and interactive environment.
+CollabTexter is a browser-based real-time technical interview platform designed to simulate collaborative coding environments for live technical assessments.
 
-The platform evaluates written code instantly, provides dynamic visual feedback based on execution results, and integrates a live communication system to simulate a collaborative development workflow.
+It enables interviewers and candidates to write, execute, and evaluate code within a structured, interactive, and responsive interface — without requiring any local installation.
 
-The application focuses on real-time code validation, dynamic rendering, responsive design principles, and structured interviewer–candidate interaction.
+---
 
-2. Key Features
+## Project Overview
+
+CollabTexter was developed to replicate a real-world collaborative development workflow in a technical interview setting.
+
+The platform provides:
+
+- Instant code validation
+- Structured execution feedback
+- Dynamic UI updates based on runtime output
+- Integrated real-time communication
+
+The system emphasizes clean frontend architecture, real-time processing logic, and maintainable state-driven UI management.
+
+---
+
+## Core Features
+
 - Real-time code execution and automated validation
 - Instant syntax and runtime error detection
-- Visual feedback system indicating successful or failed execution
-- Line-level error highlighting with warning messages
-- Integrated live chat for real-time communication
-- Dynamic UI updates based on execution output
-- Fully browser-based architecture with no installation required
+- Line-level error highlighting with structured warning messages
+- Visual feedback system indicating success or failure states
+- Integrated live chat for interviewer–candidate communication
+- Conditional UI rendering based on execution results
+- Fully browser-based architecture (no installation required)
 
-3. Technical Details
-The system processes user-written code within the browser environment and evaluates execution results dynamically. Based on the output, the interface updates automatically to reflect success states or highlight errors.
+---
 
-It demonstrates:
+## Technical Architecture
 
-- Real-time execution logic implementation
+### Execution Flow
+
+1. User writes code in the browser editor  
+2. Code is processed and evaluated dynamically  
+3. Output is analyzed for syntax/runtime errors  
+4. Structured feedback is generated  
+5. UI updates instantly to reflect execution state  
+
+### Engineering Concepts Implemented
+
+- Real-time execution logic
 - Error parsing and structured feedback generation
-- Dynamic DOM manipulation and conditional rendering
+- Dynamic DOM manipulation
+- Conditional rendering patterns
 - Asynchronous event handling
-- State-based UI management
+- State-driven UI management
 - Modular and maintainable frontend architecture
-- Real-time communication integration
+- Real-time communication handling
 
-4. Technologies Used
-- HTML5
-- CSS3
-- JavaScript (ES6+)
-- WebSocket or similar real-time communication protocol (if implemented)
-- REST API integration (if applicable)
+---
+
+## Technologies Used
+
+- HTML5  
+- CSS3 (Responsive Design)  
+- JavaScript (ES6+)  
+- WebSocket (or similar real-time communication protocol, if implemented)  
+- REST API integration (if applicable)  
+
+---
+
+## Engineering Focus
+
+This project demonstrates:
+
+- Real-time browser-based code evaluation logic
+- Advanced DOM manipulation and UI state control
+- Error handling and structured validation mechanisms
+- Interactive user experience design
+- Scalable frontend architecture for collaborative environments
+
+---
+
+## Potential Enhancements
+
+- Multi-language execution support
+- Code persistence and session management
+- Interview analytics dashboard
+- User authentication and role-based access
+- Code history tracking and replay system
+- Integration with automated test case runners
+
+---
+
+## License
+
+MIT License
