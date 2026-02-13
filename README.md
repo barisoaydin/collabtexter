@@ -1,1 +1,1 @@
-# COLLABORATOR EXAMPLES
+Online software interview project.
